@@ -1,0 +1,174 @@
+\documentclass[12pt,twocolumn,a4paper]{article}
+\usepackage[top=0.5in, bottom=1in, left=1in, right=1in]{geometry}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{natbib}
+
+\begin{document}
+\author{Dionisio Perez-Mavrogenis}
+\title{Machine Learning Assignment 1}
+\maketitle
+
+\section{Introduction}
+To complete this assignment I used the WEKA\footnote{WEKA website : \href{http://www.cs.waikato.ac.nz/ml/weka/}{http://www.cs.waikato.ac.nz/ml/weka/}} tool. WEKA is a collection of tools for data preprocessing, learning algorithms for data mining and visualization of the results. The main source that I used in order to learn how WEKA works and its various capabilities is \citep{Witten2011}.
+
+For this assignment I will be comparing and evaluating the performance of different classifiers and describe the data preprocessing that I performed in order to boost that performance.
+
+The dataset provided described 16 classes, however several classes had no instances at all (classes 11, 12 and 13), while others had a very small number of instances that were not enough for training and testing performance (classes 7, 8, 9, 14, 15). Classes 1, 2 and 10 had plenty of instances, resulting in better classifier training and performance while testing those. Classes 3, 4, 5, 6 and 16 had some examples (few compared to classes 1, 2 and 10) and including them in the training worsened the performance of the classifiers. For this reason, I will be using classes 1, 2 and 10 in order to compare the classifiers' performances.
+
+\section{Data Preprocessing}
+The first part of data preprocessing was to generate the input arff file for WEKA. I wrote a perl script to do that and Appendix \ref{sec:arff} describes the file.
+
+Instances of the dataset provided had 280 attributes each. However, not all attributes were present and certainly not all attributes were useful, as they experienced very little or no variation between instance of the same or different class.
+
+Retaining all 280 attributes would be unnecessary and would increase the training time required by each classifier. Thankfully WEKA offers a great selection of filtering algorithms for attribute selection, both supervised and unsupervised.
+
+Table \ref{tab:filtcomp} shows a comparison of various filters. The results in \ref{tab:filtcomp} were derived by measuring the performance of an MLP in an attempt for the performance to be a slight indicator towards which is the best filter to use.
+
+The filter that I chose to finally use in order to reduce the number of attributed used for classification was the \texttt{AttributeSelection} filter with the \texttt{GeneticSearch} search algorithm, an algorithm selecting the most useful attributes by using the genetic algorithm (\cite[p~41]{Goldberg1989}) with the final set of attributes consisting of 14 attributes and a relatively good performance, both in correct classification and running time of the classifiers. In addition to AttributeSelection, I used the \texttt{Randomize} filter which randomizes the order in which instances appear in the dataset. That also boosted performance, but not significantly.
+
+\begin{table*}
+\center
+    \begin{tabular}{c | c | c | c | c }
+    ~                      & \textbf{PCA}   & \textbf{AS-BF} & \textbf{AS-GS} & \textbf{Random subset}\\ \hline
+    \textbf{Attributes after}       & 94    & 23    & 14    & 85 \\
+    \textbf{Correctly classified(\%)}   & 73.53 & 85.29 & 86.76 & 83.82 \\
+    \textbf{Incorrectly classified(\%)} & 26.47 & 14.71 & 13.24 & 16.18\\
+    \textbf{Mean absolute error}    & 0.20  & 0.10  & 0.094 & 0.11 \\
+    \textbf{RMS error} &  0.39 & 0.28  & 0.27  & 0.32 \\
+    \end{tabular}
+\caption{Filter performance of a default MLP. Comparison of PCA, AttributeSelection with the default BestFirst search algorithm, AttributeSelection with GeneticAlgorithm search and a filter selecting a random subset of the attributes.}
+\label{tab:filtcomp}
+\end{table*}
+
+\section{Testing Classifiers}
+I will be examining the performance of three learning algorithms, in their default settings, in an attempt to pick the most suitable for tweaking. Furthermore, I will also be looking at the best performing algorithm from the meta-learning algorithms that WEKA offers in order to examine whether further performance gains are possible.
+
+\subsection{Learning algorithm selection} The learning algorithms that I will be comparing are \textit{RBFNetwork}, \textit{SimpleLogistic}, \textit{Logistic} and \textit{MLP} \footnote{Information on what each function is : \href{http://weka.sourceforge.net/doc.dev/}{http://weka.sourceforge.net/doc.dev/}}.
+
+\begin{table*}
+\centering
+\begin{tabular}{c | c | c | c | c }
+    & \textbf{RBFNetwork} & \textbf{Logistic} & \textbf{SimpleLogistic} & \textbf{MLP}   \\ \hline
+    \textbf{Correctly classified (\%)} & 85.84      & 85.55    & 86.43          & 84.66 \\
+    \textbf{Mean abs. error}           & 0.14       & 0.12     & 0.12           & 0.11  \\
+    \textbf{Root mean squared error}   & 0.29       & 0.27     & 0.26           & 0.28  \\
+    \end{tabular}
+ \label{tab:class}
+ \caption{Performance statistics of various learning algorithms.}   
+\end{table*}
+
+The performance of these algorithms is given in Table \ref{tab:class}, with \textit{SimpleLogistic} being the chosen function for further exploration.
+
+For evaluating the algorithms I used 100-fold cross validation rather than a percentage split on the available data because there was not an equal number of instances from each class and, while performing percentage split, classes with fewer instances had no instances left for testing. Furthermore, a high number of folds for cross validations was possible thanks to the reduced dimensionality of the input data.
+
+\subsection{Tweaking SimpleLogistic}
+\label{sub:tweak}
+The available parameters that one can tweak on the algorithm are:
+\begin{itemize}
+\item \textbf{errorOnProbabilities}
+\item \textbf{heuristicStop}
+\item \textbf{maxBoostingIterations}
+\item \textbf{numBoostingIterations}
+\item \textbf{useAIC}
+\item \textbf{useCrossValidation}
+\item \textbf{weightTrimBeta}
+\end{itemize}
+Detailed information on what each parameter is are given in Appendix \ref{sec:det}.
+
+In order to observe the impact on the classification performance of the classifier I altered the parameters one at a time, starting always from the default values. Table \ref{tab:opt} gives an outline of the optimal values. 
+
+\begin{table}
+\begin{tabular}{c | c }
+\textbf{Parameter} & \textbf{Value} \\ \hline
+\textbf{errorOnProbabilities} & False \\
+\textbf{heuristicStop} & 10 \\
+\textbf{maxBoostingIterations} & 8 \\
+\textbf{numBoostingIterations} & 8 \\
+\textbf{useAIC} & True \\
+\textbf{useCrossValidation} & True \\
+\textbf{weightTrimBeta} & 0.0 \\
+\end{tabular}
+\caption{Optimal performance settings.}
+\label{tab:opt}
+\end{table}
+
+\begin{table*}
+\centering
+\begin{tabular}{c | c | c | c | c }
+    \textbf{Settings(Folds)} & \textbf{Correct (\%)} & \textbf{Incorrect(\%)} & \textbf{Mean abs. error} & \textbf{RMS error} \\ \hline
+    Default (10) & 86.43 & 13.57 & 0.12 & 0.26 \\
+    Optimal (10) & 87.61 & 12.39 & 0.13 & 0.25 \\
+    Optimal (50) & 87.91 & 12.9 & 0.13 & 0.25 \\
+\end{tabular}
+\caption{Comparison of classification performance of optimal vs. default settings for the SimpleLogistic classifier.}   
+\label{tab:comp}
+\end{table*}
+
+SimpleLogistic with its default parameters, on 10-fold cross-validation, performed worse than the version with the optimal settings. Details of the comparison are given in Table \ref{tab:comp}.
+
+The final parameter that I altered in order to improve performance was the number of folds. I found that the optimal is 50, resulting in a minuscule performance increase (Table \ref{tab:comp}).
+
+In addition to classification performance, the optimal settings also decrease the classifier's training time, as the time taken to build the model with the optimal settings is 0.01 seconds and 0.27 seconds for the default settings, as measured by WEKA.
+
+\section{Training a meta-learner}
+Another interesting category of classifiers that WEKA offers are the meta-learners. 
+
+The classifier that I chose to test was the AdaBoostM1 boosting classifier, as boosting was the technique that seemed most appropriate for this type of problem. The learning algorithm that I used with AdaBoostM1 was again SimpleLogistic with the optimal settings described in Section \ref{sub:tweak}.
+
+The performance of the meta-learner was the same as that of SimpleLogistic, however the errors , shown in table \ref{tab:err}, were a bit worse.
+
+\begin{table}
+\centering
+\begin{tabular}{c | c | c }
+    & \textbf{Mean abs. error} & \textbf{RMS error} \\ \hline
+    ABM1 & 0.14 & 0.27 \\
+    SL & 0.13 & 0.25 \\
+\end{tabular}
+\caption{Comparison of errors for AdaBoostM1 and SimpleLogistic for 50-fold cross validation on optimal settings.}   
+\label{tab:comp}
+\end{table}
+
+\section{Conclusion}
+The combinations of the settings of the various algorithms offered in WEKA was too large to explore to its entirety. However, the algorithms presented here have an acceptable performance.
+
+An issue that worsens algorithm generalization performance, although counter intuitive, was over-fitting on the training data. SimpleLogistic and AdaBoostM1 experienced a decline in performance as the number of internal boosting iterations performed by the algorithms increased. 
+
+Another factor that affected classifier performance was the number of folds while cross-validating. If the number of folds was too small(10) or too large(200) the classification performance suffered. The optimal number of folds was found by trial and error to be 50 folds.
+
+\bibliographystyle{plainnat}
+\bibliography{bibl}
+
+\pagebreak
+\onecolumn
+
+\appendix
+\section{WEKA arff File}
+These are the headers of the WEKA arff file. All attributes are real valued numbers, except for \textit{sex} and \textit{class} which are nominal, i.e. can only take certain values.\\
+
+Because the arff file was too big to include here, a link is provided for downloading the file. \\
+
+Download from Dropbox : \href{https://dl.dropboxusercontent.com/u/23023752/popular.arff}{https://dl.dropboxusercontent.com/u/23023752/popular.arff} .
+\label{sec:arff}
+%\lstinputlisting[breaklines=true,numbers=left,numberstyle=\tiny]{appendices/wekatitles}
+
+\section{SimpleLogistinc Parameters}
+\label{sec:det}
+The information presented here is quoted directly from the WEKA information on the SimpleLogistic algorithm.
+\centering
+\begin{itemize}
+\item[errorOnProbabilities]\hfill \\  Use error on the probabilties as error measure when determining the best number of LogitBoost iterations. If set, the number of LogitBoost iterations is chosen that minimizes the root mean squared error (either on the training set or in the cross-validation, depending on useCrossValidation).
+
+\item[heuristicStop]\hfill \\  If heuristicStop > 0, the heuristic for greedy stopping while cross-validating the number of LogitBoost iterations is enabled. This means LogitBoost is stopped if no new error minimum has been reached in the last heuristicStop iterations. It is recommended to use this heuristic, it gives a large speed-up especially on small datasets. The default value is 50.
+
+\item[maxBoostingIterations] \hfill \\ Sets the maximum number of iterations for LogitBoost. Default value is 500, for very small/large datasets a lower/higher value might be preferable.
+
+\item[numBoostingIterations] \hfill \\ Set fixed number of iterations for LogitBoost. If >= 0, this sets the number of LogitBoost iterations to perform. If < 0, the number is cross-validated or a stopping criterion on the training set is used (depending on the value of useCrossValidation).
+
+\item[useAIC]\hfill \\  The AIC is used to determine when to stop LogitBoost iterations (instead of cross-validation or training error).
+
+\item[useCrossValidation]\hfill \\  Sets whether the number of LogitBoost iterations is to be cross-validated or the stopping criterion on the training set should be used. If not set (and no fixed number of iterations was given), the number of LogitBoost iterations is used that minimizes the error on the training set (misclassification error or error on probabilities depending on errorOnProbabilities).
+
+\item[weightTrimBeta]\hfill \\  Set the beta value used for weight trimming in LogitBoost. Only instances carrying (1 - beta)\% of the weight from previous iteration are used in the next iteration. Set to 0 for no weight trimming. The default value is 0.
+\end{itemize}
+\end{document}

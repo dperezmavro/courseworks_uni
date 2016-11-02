@@ -1,0 +1,13 @@
+(not really helpful--> applying remove frequent) attribute selection leaves us with 14 attrs, which yields 88.6% in mlp, simple logistic 90%
+	* attribute selection with geneticSearch leaves 14 attrs
+
+varrying split also varies performance!
+
+opt is out of the box q/ 50 folds
+
+heuristic stop >> causes issues best so far is 10
+maxBoosting iterations increased drops performance , optimal is 8 
+numBoosting is also the same, 8 is good
+AIC true is good
+cross-valid true is good
+weight-trimmed 0 is good

@@ -1,0 +1,9 @@
+*.sw*
+*.pyc
+*.out
+*.log
+*.gz
+*.pdf
+*.aux
+*.bbl
+*.blg
