@@ -1,0 +1,43 @@
+PUZZLE 5
+================
+
+ HQUSESTYY 			 TBDSPKTTY 	YTT 	ERYHURBRWCVRPW RW JCBRSKJURTWESK DPSRHRTY
+<faultless>         <employees>	see 
+<guiltless>         <examinees>
+<childless>
+
+Text : chrldless employees see discrimination in familyfriendly policies
+
+Start with YTT and examine : all, add, bee, boo, ell, ebb, egg, fee, goo, too, tee, see
+commonest is see, start with that.
+
+These two columns suggest that S can only be l.
+
+For first words that match have pattern : 4 diff. letters, unique letter, letter[5] == letterp[3] and end in ess
+Blandness
+Blankness
+Blindness
+Blondness
+Bluntness
+Boundness
+Childless
+Corniness
+Downiness
+Faintness
+Faultless
+Frankness
+Gauntness
+Grandness
+Guiltless
+Horniness
+Phoniness
+Roundness
+Tawniness
+Thingness
+Wrongness
+Youngness
+
+words ending in ness imply property and wouldn't follow logically the rest
+
+ytt = see : guess, as TTY would be ees and lots of words end with ees.
+
