@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore" xmlns:o="http://wireframesketcher.com/1.0/model/overrides">
+  <widgets xsi:type="model:Master" id="1" measuredWidth="430" measuredHeight="844">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Phone"/>
+  </widgets>
+  <widgets xsi:type="model:Panel" id="3" x="37" y="181" width="357" height="524" measuredWidth="357" measuredHeight="524"/>
+  <widgets xsi:type="model:Master" id="8" x="37" y="181" height="52" measuredWidth="360" measuredHeight="52">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Tabs"/>
+    <overrides>
+      <widgets ref="9" height="52" text="Personal Settings, Software Information">
+        <items ref="@items.0" text="Personal Settings"/>
+        <items ref="@items.2" text="Software Information"/>
+        <itemChanges xsi:type="o:Delete" ref="@items.1"/>
+      </widgets>
+    </overrides>
+  </widgets>
+  <widgets xsi:type="model:Master" id="9" x="120" y="640" measuredWidth="184" measuredHeight="42">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Button"/>
+    <overrides>
+      <widgets ref="497" height="42" text="Save"/>
+    </overrides>
+  </widgets>
+  <widgets xsi:type="model:WidgetGroup" id="20" x="86" y="248" measuredWidth="244" measuredHeight="375">
+    <widgets xsi:type="model:Master" id="5" width="244" measuredWidth="244" measuredHeight="31">
+      <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Text%20Field"/>
+      <overrides>
+        <widgets ref="479" width="241" text="First Name"/>
+        <widgets ref="478" width="241" height="18"/>
+      </overrides>
+    </widgets>
+    <widgets xsi:type="model:Master" id="6" y="51" width="244" height="41" measuredWidth="244" measuredHeight="41">
+      <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Text%20Field"/>
+      <overrides>
+        <widgets ref="479" width="241" text="Last name"/>
+        <widgets ref="478" width="241" height="17"/>
+      </overrides>
+    </widgets>
+    <widgets xsi:type="model:Master" id="16" y="99" width="244" height="41" measuredWidth="244" measuredHeight="41">
+      <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Text%20Field"/>
+      <overrides>
+        <widgets ref="479" width="241" text="e-mail"/>
+        <widgets ref="478" width="241" height="17"/>
+      </overrides>
+    </widgets>
+    <widgets xsi:type="model:Master" id="17" y="232" width="244" height="41" measuredWidth="244" measuredHeight="41">
+      <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Text%20Field"/>
+      <overrides>
+        <widgets ref="479" width="241" text="Confirm"/>
+        <widgets ref="478" width="241" height="17"/>
+      </overrides>
+    </widgets>
+    <widgets xsi:type="model:Master" id="18" y="192" width="244" height="41" measuredWidth="244" measuredHeight="41">
+      <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Text%20Field"/>
+      <overrides>
+        <widgets ref="479" width="241" text="New password"/>
+        <widgets ref="478" width="241" height="17"/>
+      </overrides>
+    </widgets>
+    <widgets xsi:type="model:Master" id="19" y="334" width="244" height="41" measuredWidth="244" measuredHeight="41">
+      <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Text%20Field"/>
+      <overrides>
+        <widgets ref="479" width="241" text="Current password"/>
+        <widgets ref="478" width="241" height="17"/>
+      </overrides>
+    </widgets>
+  </widgets>
+  <widgets xsi:type="model:Master" id="10" x="37" y="135" measuredWidth="360" measuredHeight="46">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Action%20Bar"/>
+    <overrides>
+      <widgetChanges xsi:type="o:Delete" ref="693"/>
+      <widgetChanges xsi:type="o:Delete" ref="672"/>
+      <widgets ref="670" link="admin_main.screen">
+        <attributes key="icon" value="backspace (large)"/>
+      </widgets>
+      <widgets ref="669" x="59" y="7" text="Main" link="admin_main.screen"/>
+    </overrides>
+  </widgets>
+  <widgets xsi:type="model:Link" id="21" x="335" y="200" measuredWidth="3" measuredHeight="23" link="admin_software_information.screen">
+    <font/>
+  </widgets>
+  <hRuler/>
+  <vRuler/>
+  <font size="12px"/>
+</model:Screen>

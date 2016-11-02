@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore" xmlns:o="http://wireframesketcher.com/1.0/model/overrides">
+  <widgets xsi:type="model:Master" id="2" measuredWidth="430" measuredHeight="844">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Phone"/>
+  </widgets>
+  <widgets xsi:type="model:Link" id="14" x="346" y="192" measuredWidth="3" measuredHeight="23" link="admin_report_map.screen">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:WidgetGroup" id="32" x="37" y="102" measuredWidth="452" measuredHeight="603">
+    <widgets xsi:type="model:WidgetGroup" id="31" measuredWidth="452" measuredHeight="603">
+      <widgets xsi:type="model:WidgetGroup" id="29" measuredWidth="452" measuredHeight="603">
+        <widgets xsi:type="model:WidgetGroup" id="21" measuredWidth="452" measuredHeight="603">
+          <widgets xsi:type="model:WidgetGroup" id="20" y="33" measuredWidth="360" measuredHeight="570">
+            <widgets xsi:type="model:Panel" id="3" width="360" height="570" measuredWidth="360" measuredHeight="570" background="#ea9999" alpha="128"/>
+            <widgets xsi:type="model:Icon" id="9" x="75" y="113" width="206" height="168" measuredWidth="206" measuredHeight="168" icon="image (large)"/>
+            <widgets xsi:type="model:Master" id="10" x="108" y="97" measuredWidth="134" measuredHeight="31">
+              <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Text%20Size%20Medium"/>
+              <overrides>
+                <widgets ref="5" text="Report Title">
+                  <font bold="true"/>
+                </widgets>
+              </overrides>
+            </widgets>
+            <widgets xsi:type="model:Text" id="11" x="35" y="280" width="288" height="88" measuredWidth="288" measuredHeight="88" textAlignment="Center" dummyText="true">
+              <font/>
+            </widgets>
+            <widgets xsi:type="model:Master" id="12" y="45" measuredWidth="360" measuredHeight="48">
+              <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Tabs"/>
+              <overrides>
+                <widgets ref="9" text="Report Details, Map View">
+                  <items ref="@items.1" text="Report Details"/>
+                  <items ref="@items.2" text="Map View"/>
+                  <itemChanges xsi:type="o:Delete" ref="@items.0"/>
+                </widgets>
+              </overrides>
+            </widgets>
+            <widgets xsi:type="model:TextField" id="23" x="108" y="377" text="Submitted by : Identifier" measuredWidth="160" measuredHeight="23">
+              <font/>
+            </widgets>
+            <widgets xsi:type="model:TextField" id="24" x="108" y="399" text="Date : datetime" measuredWidth="104" measuredHeight="23">
+              <font/>
+            </widgets>
+            <widgets xsi:type="model:Link" id="28" x="259" y="377" measuredWidth="3" measuredHeight="23" link="admin_submiter_details.screen">
+              <font/>
+            </widgets>
+          </widgets>
+          <widgets xsi:type="model:WidgetGroup" id="4" measuredWidth="452" measuredHeight="79">
+            <widgets xsi:type="model:Master" id="5" y="33" measuredWidth="360" measuredHeight="46" dimmed="true">
+              <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Action%20Bar"/>
+              <overrides>
+                <widgetChanges xsi:type="o:Delete" ref="693"/>
+                <widgetChanges xsi:type="o:Delete" ref="672"/>
+                <widgets ref="670" link="admin_main.screen">
+                  <attributes key="icon" value="backspace (large)"/>
+                </widgets>
+                <widgets ref="669" x="59" y="7" text="Main" link="admin_main.screen"/>
+              </overrides>
+            </widgets>
+            <widgets xsi:type="model:WidgetGroup" id="6" x="319" measuredWidth="133" measuredHeight="72">
+              <widgets xsi:type="model:Icon" id="7" y="40" measuredWidth="32" measuredHeight="32" foreground="#666666" icon="favorites (large)"/>
+              <widgets xsi:type="model:Tooltip" id="8" x="20" text="Add to favourites&#xA;" measuredWidth="113" measuredHeight="40">
+                <font/>
+              </widgets>
+            </widgets>
+          </widgets>
+        </widgets>
+        <widgets xsi:type="model:WidgetGroup" id="16" x="91" y="466" measuredWidth="165" measuredHeight="27">
+          <widgets xsi:type="model:Label" id="13" text="Status" measuredWidth="65" measuredHeight="27" textAlignment="Center" iconPosition="top">
+            <font size="16px" bold="true"/>
+          </widgets>
+          <widgets xsi:type="model:Combo" id="25" x="72" y="2" text="Unresolved&#xA;" measuredWidth="93" measuredHeight="23">
+            <font/>
+          </widgets>
+        </widgets>
+      </widgets>
+    </widgets>
+    <widgets xsi:type="model:Master" id="26" x="79" y="554" measuredWidth="184" measuredHeight="39">
+      <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Button"/>
+      <overrides>
+        <widgets ref="497" text="Submit"/>
+      </overrides>
+    </widgets>
+    <widgets xsi:type="model:Master" id="27" x="123" y="514" measuredWidth="100" measuredHeight="31">
+      <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Text%20Field"/>
+      <overrides>
+        <widgets ref="479" text="Password"/>
+      </overrides>
+    </widgets>
+  </widgets>
+  <hRuler/>
+  <vRuler/>
+  <font size="12px"/>
+</model:Screen>

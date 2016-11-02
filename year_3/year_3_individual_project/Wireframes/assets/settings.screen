@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore" xmlns:o="http://wireframesketcher.com/1.0/model/overrides">
+  <widgets xsi:type="model:Master" id="1" measuredWidth="430" measuredHeight="844">
+    <screen xsi:type="model:WidgetGroup" href="Android4.screen#Phone"/>
+  </widgets>
+  <widgets xsi:type="model:WidgetGroup" id="17" x="37" y="181" height="525" measuredWidth="360" measuredHeight="524">
+    <widgets xsi:type="model:Panel" id="12" width="357" height="524" measuredWidth="357" measuredHeight="524"/>
+    <widgets xsi:type="model:WidgetGroup" id="9" x="49" y="105" width="245" height="253" measuredWidth="244" measuredHeight="252">
+      <widgets xsi:type="model:Master" id="4" width="228" height="95" measuredWidth="228" measuredHeight="95">
+        <screen xsi:type="model:WidgetGroup" href="Android4.screen#Text%20Field"/>
+        <overrides>
+          <widgets ref="479" width="225" text="First Name"/>
+          <widgets ref="478" y="1" width="225" height="62"/>
+        </overrides>
+      </widgets>
+      <widgets xsi:type="model:Master" id="5" y="93" width="236" height="69" measuredWidth="236" measuredHeight="69">
+        <screen xsi:type="model:WidgetGroup" href="Android4.screen#Text%20Field"/>
+        <overrides>
+          <widgets ref="479" width="233" text="Last name"/>
+          <widgets ref="478" y="4" width="233" height="43"/>
+        </overrides>
+      </widgets>
+      <widgets xsi:type="model:Master" id="6" y="187" width="244" height="65" measuredWidth="244" measuredHeight="65">
+        <screen xsi:type="model:WidgetGroup" href="Android4.screen#Text%20Field"/>
+        <overrides>
+          <widgets ref="479" width="241" text="Email"/>
+          <widgets ref="478" y="7" width="241" height="40"/>
+        </overrides>
+      </widgets>
+    </widgets>
+    <widgets xsi:type="model:Master" id="11" height="52" measuredWidth="360" measuredHeight="52">
+      <screen xsi:type="model:WidgetGroup" href="Android4.screen#Tabs"/>
+      <overrides>
+        <widgets ref="9" height="52" text="Personal Settings, Software Information">
+          <items ref="@items.0" text="Personal Settings"/>
+          <items ref="@items.2" text="Software Information"/>
+          <itemChanges xsi:type="o:Delete" ref="@items.1"/>
+        </widgets>
+      </overrides>
+    </widgets>
+    <widgets xsi:type="model:Master" id="15" x="89" y="410" height="42" measuredWidth="184" measuredHeight="42">
+      <screen xsi:type="model:WidgetGroup" href="Android4.screen#Button"/>
+      <overrides>
+        <widgets ref="497" height="42" text="Save"/>
+      </overrides>
+    </widgets>
+  </widgets>
+  <widgets xsi:type="model:Master" id="18" x="37" y="135" measuredWidth="360" measuredHeight="46">
+    <screen xsi:type="model:WidgetGroup" href="Android4.screen#Action%20Bar"/>
+    <overrides>
+      <widgetChanges xsi:type="o:Delete" ref="693"/>
+      <widgetChanges xsi:type="o:Delete" ref="672"/>
+      <widgets ref="670">
+        <attributes key="icon" value="backspace (large)"/>
+      </widgets>
+      <widgets ref="669" x="59" y="7" text="Main"/>
+    </overrides>
+  </widgets>
+  <widgets xsi:type="model:Link" id="20" x="352" y="192" measuredWidth="3" measuredHeight="23" link="../user_app/software_update.screen">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Link" id="21" x="112" y="151" measuredWidth="3" measuredHeight="23" link="../user_app/user_home.screen">
+    <font/>
+  </widgets>
+  <hRuler/>
+  <vRuler/>
+  <font size="12px"/>
+</model:Screen>

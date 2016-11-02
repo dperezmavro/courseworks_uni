@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore" xmlns:o="http://wireframesketcher.com/1.0/model/overrides">
+  <widgets xsi:type="model:Master" id="1" measuredWidth="430" measuredHeight="844">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Phone"/>
+  </widgets>
+  <widgets xsi:type="model:Master" id="4" x="37" y="135" measuredWidth="360" measuredHeight="46" dimmed="true">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Action%20Bar"/>
+    <overrides>
+      <widgetChanges xsi:type="o:Delete" ref="693"/>
+      <widgetChanges xsi:type="o:Delete" ref="672"/>
+      <widgets ref="670" link="admin_main.screen">
+        <attributes key="icon" value="backspace (large)"/>
+      </widgets>
+      <widgets ref="669" x="59" y="7" text="Main" link="admin_main.screen"/>
+    </overrides>
+  </widgets>
+  <widgets xsi:type="model:Master" id="5" x="38" y="180" measuredWidth="360" measuredHeight="48">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Tabs"/>
+    <overrides>
+      <widgets ref="9" text="Results , Filter , View on Map">
+        <items ref="@items.1" text="Results "/>
+        <items ref="@items.2" text="Filter "/>
+        <itemChanges xsi:type="o:Insert" newIndex="3">
+          <object xsi:type="model:Item" text="View on Map"/>
+        </itemChanges>
+        <itemChanges xsi:type="o:Delete" ref="@items.0"/>
+      </widgets>
+    </overrides>
+  </widgets>
+  <widgets xsi:type="model:Link" id="6" x="120" y="192" measuredWidth="3" measuredHeight="23" link="admin_report_browser.screen">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Map" id="7" x="37" y="227" width="360" height="479" measuredWidth="360" measuredHeight="479"/>
+  <widgets xsi:type="model:Link" id="9" x="208" y="192" measuredWidth="3" measuredHeight="23" link="admin_search_filters.screen">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:WidgetGroup" id="10" x="256" y="200" measuredWidth="200" measuredHeight="112">
+    <widgets xsi:type="model:Tooltip" id="11" width="200" height="112" measuredWidth="200" measuredHeight="112">
+      <font/>
+    </widgets>
+    <widgets xsi:type="model:Label" id="12" x="48" y="16" width="64" text="Title" measuredWidth="64" measuredHeight="31">
+      <font size="19px" bold="true"/>
+    </widgets>
+    <widgets xsi:type="model:Icon" id="13" x="136" y="16" measuredWidth="48" measuredHeight="48" icon="book (xlarge)" link="admin_report_details.screen"/>
+    <widgets xsi:type="model:Label" id="14" x="48" y="38" width="64" text="Location" measuredWidth="64" measuredHeight="26">
+      <font size="15px" bold="false"/>
+    </widgets>
+    <widgets xsi:type="model:Label" id="15" x="48" y="63" width="81" text="Submiter" measuredWidth="81" measuredHeight="26" link="admin_submiter_details.screen">
+      <font size="15px" bold="false"/>
+    </widgets>
+  </widgets>
+  <widgets xsi:type="model:SVGImage" id="16" x="268" y="568" measuredWidth="120" measuredHeight="120" foreground="#00ff00" src="../assets/7-location-place.svg"/>
+  <widgets xsi:type="model:WidgetGroup" id="17" x="346" y="504" measuredWidth="200" measuredHeight="112">
+    <widgets xsi:type="model:Tooltip" id="18" width="200" height="112" measuredWidth="200" measuredHeight="112">
+      <font/>
+    </widgets>
+    <widgets xsi:type="model:Label" id="19" x="48" y="16" width="64" text="Title" measuredWidth="64" measuredHeight="31">
+      <font size="19px" bold="true"/>
+    </widgets>
+    <widgets xsi:type="model:Icon" id="20" x="136" y="16" measuredWidth="48" measuredHeight="48" icon="book (xlarge)" link="admin_report_details.screen"/>
+    <widgets xsi:type="model:Label" id="21" x="48" y="38" width="64" text="Location" measuredWidth="64" measuredHeight="26">
+      <font size="15px" bold="false"/>
+    </widgets>
+    <widgets xsi:type="model:Label" id="22" x="48" y="63" width="81" text="Submiter" measuredWidth="81" measuredHeight="26" link="admin_submiter_details.screen">
+      <font size="15px" bold="false"/>
+    </widgets>
+  </widgets>
+  <widgets xsi:type="model:WidgetGroup" id="31" x="145" y="400" measuredWidth="200" measuredHeight="112">
+    <widgets xsi:type="model:Tooltip" id="32" width="200" height="112" measuredWidth="200" measuredHeight="112">
+      <font/>
+    </widgets>
+    <widgets xsi:type="model:Label" id="33" x="48" y="16" width="64" text="Title" measuredWidth="64" measuredHeight="31">
+      <font size="19px" bold="true"/>
+    </widgets>
+    <widgets xsi:type="model:Icon" id="34" x="136" y="16" measuredWidth="48" measuredHeight="48" icon="book (xlarge)" link="admin_report_details.screen"/>
+    <widgets xsi:type="model:Label" id="35" x="48" y="38" width="64" text="Location" measuredWidth="64" measuredHeight="26">
+      <font size="15px" bold="false"/>
+    </widgets>
+    <widgets xsi:type="model:Label" id="36" x="48" y="63" width="81" text="Submiter" measuredWidth="81" measuredHeight="26" link="admin_submiter_details.screen">
+      <font size="15px" bold="false"/>
+    </widgets>
+  </widgets>
+  <widgets xsi:type="model:SVGImage" id="37" x="72" y="480" measuredWidth="120" measuredHeight="120" foreground="#ff0000" src="../assets/7-location-place.svg"/>
+  <widgets xsi:type="model:SVGImage" id="23" x="168" y="273" measuredWidth="120" measuredHeight="120" foreground="#ff0000" src="../assets/7-location-place.svg"/>
+  <widgets xsi:type="model:SVGImage" id="24" x="268" y="568" measuredWidth="120" measuredHeight="120" foreground="#00ff00" src="../assets/7-location-place.svg"/>
+  <widgets xsi:type="model:WidgetGroup" id="25" x="346" y="504" measuredWidth="200" measuredHeight="112">
+    <widgets xsi:type="model:Tooltip" id="26" width="200" height="112" measuredWidth="200" measuredHeight="112">
+      <font/>
+    </widgets>
+    <widgets xsi:type="model:Label" id="27" x="48" y="16" width="64" text="Title" measuredWidth="64" measuredHeight="31">
+      <font size="19px" bold="true"/>
+    </widgets>
+    <widgets xsi:type="model:Icon" id="28" x="136" y="16" measuredWidth="48" measuredHeight="48" icon="book (xlarge)" link="admin_report_details.screen"/>
+    <widgets xsi:type="model:Label" id="29" x="48" y="38" width="64" text="Location" measuredWidth="64" measuredHeight="26">
+      <font size="15px" bold="false"/>
+    </widgets>
+    <widgets xsi:type="model:Label" id="30" x="48" y="63" width="81" text="Submiter" measuredWidth="81" measuredHeight="26" link="admin_submiter_details.screen">
+      <font size="15px" bold="false"/>
+    </widgets>
+  </widgets>
+  <hRuler/>
+  <vRuler/>
+  <font size="12px"/>
+</model:Screen>

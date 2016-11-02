@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:Master" id="1" measuredWidth="430" measuredHeight="844">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Phone"/>
+  </widgets>
+  <widgets xsi:type="model:Master" id="3" x="128" y="606" measuredWidth="184" measuredHeight="39" link="admin_main.screen">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Button"/>
+    <overrides>
+      <widgets ref="497" text="Log in"/>
+    </overrides>
+  </widgets>
+  <widgets xsi:type="model:Master" id="4" x="80" y="232" width="265" height="73" measuredWidth="265" measuredHeight="73">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Text%20Field"/>
+    <overrides>
+      <widgets ref="479" width="263" text="Andron Authority"/>
+      <widgets ref="478" y="6" width="263" height="47"/>
+    </overrides>
+  </widgets>
+  <widgets xsi:type="model:Master" id="5" x="80" y="326" width="265" height="73" measuredWidth="265" measuredHeight="73">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Text%20Field"/>
+    <overrides>
+      <widgets ref="479" width="263" text="Username"/>
+      <widgets ref="478" y="6" width="263" height="47"/>
+    </overrides>
+  </widgets>
+  <widgets xsi:type="model:Master" id="6" x="80" y="420" width="265" height="73" measuredWidth="265" measuredHeight="73">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Text%20Field"/>
+    <overrides>
+      <widgets ref="479" width="263" text="Password"/>
+      <widgets ref="478" y="6" width="263" height="47"/>
+    </overrides>
+  </widgets>
+  <hRuler/>
+  <vRuler/>
+  <font size="12px"/>
+</model:Screen>

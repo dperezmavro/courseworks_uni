@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore" xmlns:o="http://wireframesketcher.com/1.0/model/overrides">
+  <widgets xsi:type="model:Master" id="1" measuredWidth="430" measuredHeight="844">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Phone"/>
+  </widgets>
+  <widgets xsi:type="model:Master" id="2" x="38" y="135" measuredWidth="360" measuredHeight="46">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Action%20Bar"/>
+    <overrides>
+      <widgetChanges xsi:type="o:Delete" ref="693"/>
+      <widgetChanges xsi:type="o:Delete" ref="672"/>
+      <widgets ref="670" link="admin_main.screen">
+        <attributes key="icon" value="backspace (large)"/>
+      </widgets>
+      <widgets ref="669" x="59" y="7" text="Main" link="admin_main.screen"/>
+    </overrides>
+  </widgets>
+  <widgets xsi:type="model:Master" id="3" x="38" y="180" measuredWidth="360" measuredHeight="48" link="admin_submiter_actions.screen">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Tabs"/>
+    <overrides>
+      <widgets ref="9" text="Results , Filter">
+        <items ref="@items.1" text="Results "/>
+        <itemChanges xsi:type="o:Insert" newIndex="3">
+          <object xsi:type="model:Item" text="Filter"/>
+        </itemChanges>
+        <itemChanges xsi:type="o:Delete" ref="@items.2"/>
+        <itemChanges xsi:type="o:Delete" ref="@items.0"/>
+      </widgets>
+    </overrides>
+  </widgets>
+  <widgets xsi:type="model:Link" id="4" x="168" y="192" measuredWidth="3" measuredHeight="23" link="admin_submiter_actions.screen">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Master" id="5" x="120" y="648" measuredWidth="184" measuredHeight="39" link="admin_submiter_actions.screen">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Button"/>
+    <overrides>
+      <widgets ref="497" text="Search"/>
+    </overrides>
+  </widgets>
+  <widgets xsi:type="model:Master" id="8" x="128" y="288" width="184" height="56" measuredWidth="184" measuredHeight="56">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Text%20Field"/>
+    <overrides>
+      <widgets ref="479" width="184" text="UID"/>
+      <widgets ref="478" y="7" width="184" height="35"/>
+    </overrides>
+  </widgets>
+  <widgets xsi:type="model:Master" id="9" x="128" y="352" height="56" measuredWidth="184" measuredHeight="56">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Text%20Field"/>
+    <overrides>
+      <widgets ref="479" width="184" text="name"/>
+      <widgets ref="478" y="7" width="184" height="35"/>
+    </overrides>
+  </widgets>
+  <widgets xsi:type="model:Master" id="10" x="128" y="424" height="56" measuredWidth="184" measuredHeight="56">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Text%20Field"/>
+    <overrides>
+      <widgets ref="479" width="184" text="email"/>
+      <widgets ref="478" y="7" width="184" height="35"/>
+    </overrides>
+  </widgets>
+  <hRuler/>
+  <vRuler/>
+  <font size="12px"/>
+</model:Screen>

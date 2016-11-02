@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore" xmlns:o="http://wireframesketcher.com/1.0/model/overrides">
+  <widgets xsi:type="model:Master" id="1" measuredWidth="430" measuredHeight="844">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Phone"/>
+  </widgets>
+  <widgets xsi:type="model:Master" id="2" x="37" y="135" measuredWidth="360" measuredHeight="46">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Action%20Bar"/>
+    <overrides>
+      <widgetChanges xsi:type="o:Delete" ref="693"/>
+      <widgetChanges xsi:type="o:Delete" ref="672"/>
+      <widgets ref="670">
+        <attributes key="icon" value="backspace (large)"/>
+      </widgets>
+      <widgets ref="669" x="59" y="7" text="Main"/>
+    </overrides>
+  </widgets>
+  <widgets xsi:type="model:Panel" id="4" x="37" y="181" width="357" height="524" measuredWidth="357" measuredHeight="524"/>
+  <widgets xsi:type="model:Master" id="9" x="37" y="181" height="52" measuredWidth="360" measuredHeight="52">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Tabs"/>
+    <overrides>
+      <widgets ref="9" height="52" text="Personal Settings, Software Information">
+        <items ref="@items.2" text="Software Information"/>
+        <items ref="@items.0" text="Personal Settings"/>
+        <itemChanges xsi:type="o:Delete" ref="@items.1"/>
+      </widgets>
+    </overrides>
+  </widgets>
+  <widgets xsi:type="model:Icon" id="11" x="128" y="408" width="192" height="184" measuredWidth="192" measuredHeight="184" icon="refresh (large)"/>
+  <widgets xsi:type="model:Tooltip" id="12" x="296" y="416" text="Check for updates&#xA;" measuredWidth="120" measuredHeight="40">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Text" id="13" x="82" y="256" width="280" height="121" text="Software Version\n Some more interesting stuff \n Credit to the authros etc" measuredWidth="280" measuredHeight="121" dummyText="true">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Link" id="14" x="101" y="146" measuredWidth="3" measuredHeight="23" link="user_home.screen">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Link" id="15" x="109" y="201" measuredWidth="3" measuredHeight="23" link="../assets/settings.screen">
+    <font/>
+  </widgets>
+  <hRuler/>
+  <vRuler/>
+  <font size="12px"/>
+</model:Screen>

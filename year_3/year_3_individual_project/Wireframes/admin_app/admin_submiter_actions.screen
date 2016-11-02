@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore" xmlns:o="http://wireframesketcher.com/1.0/model/overrides">
+  <widgets xsi:type="model:Master" id="1" measuredWidth="430" measuredHeight="844">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Phone"/>
+  </widgets>
+  <widgets xsi:type="model:Master" id="2" x="38" y="135" measuredWidth="360" measuredHeight="46">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Action%20Bar"/>
+    <overrides>
+      <widgetChanges xsi:type="o:Delete" ref="693"/>
+      <widgetChanges xsi:type="o:Delete" ref="672"/>
+      <widgets ref="670" link="admin_main.screen">
+        <attributes key="icon" value="backspace (large)"/>
+      </widgets>
+      <widgets ref="669" x="59" y="7" text="Main" link="admin_main.screen"/>
+    </overrides>
+  </widgets>
+  <widgets xsi:type="model:Master" id="3" x="38" y="180" measuredWidth="360" measuredHeight="48">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Tabs"/>
+    <overrides>
+      <widgets ref="9" text="Results , Filter">
+        <items ref="@items.1" text="Results "/>
+        <itemChanges xsi:type="o:Insert" newIndex="3">
+          <object xsi:type="model:Item" text="Filter"/>
+        </itemChanges>
+        <itemChanges xsi:type="o:Delete" ref="@items.2"/>
+        <itemChanges xsi:type="o:Delete" ref="@items.0"/>
+      </widgets>
+    </overrides>
+  </widgets>
+  <widgets xsi:type="model:Link" id="4" x="328" y="192" measuredWidth="3" measuredHeight="23" link="admin_user_filtering.screen">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Panel" id="45" x="37" y="632" width="360" height="73" measuredWidth="360" measuredHeight="73"/>
+  <widgets xsi:type="model:SVGImage" id="6" x="272" y="628" width="81" height="80" measuredWidth="81" measuredHeight="80" src="../assets/1-navigation-next-item.svg"/>
+  <widgets xsi:type="model:SVGImage" id="7" x="83" y="625" width="81" height="81" measuredWidth="81" measuredHeight="81" foreground="#999999" src="../assets/1-navigation-previous-item.svg"/>
+  <widgets xsi:type="model:Tooltip" id="8" x="315" y="625" text="Next&#xA;" measuredWidth="38" measuredHeight="40">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:WidgetGroup" id="44" x="38" y="231" measuredWidth="363" measuredHeight="298">
+    <widgets xsi:type="model:WidgetGroup" id="9" measuredWidth="360" measuredHeight="100">
+      <widgets xsi:type="model:Panel" id="24" width="360" measuredWidth="360" measuredHeight="100" background="#00ffff" alpha="64" foreground="#0000ff"/>
+      <widgets xsi:type="model:Master" id="26" x="18" y="6" measuredWidth="43" measuredHeight="31">
+        <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Text%20Size%20Medium"/>
+        <overrides>
+          <widgets ref="5" text="UID">
+            <font bold="true"/>
+          </widgets>
+        </overrides>
+      </widgets>
+      <widgets xsi:type="model:Master" id="27" x="18" y="37" measuredWidth="49" measuredHeight="26">
+        <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Text%20Size%20Small"/>
+        <overrides>
+          <widgets ref="6" text="Name"/>
+        </overrides>
+      </widgets>
+      <widgets xsi:type="model:Master" id="29" x="18" y="71" measuredWidth="46" measuredHeight="26">
+        <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Text%20Size%20Small"/>
+        <overrides>
+          <widgetChanges xsi:type="o:Insert" newIndex="1">
+            <object xsi:type="model:Label" text="Email">
+              <font size="15px" bold="false"/>
+            </object>
+          </widgetChanges>
+          <widgetChanges xsi:type="o:Delete" ref="6"/>
+        </overrides>
+      </widgets>
+      <widgets xsi:type="model:Link" id="30" x="310" y="72" text="Details" measuredWidth="43" measuredHeight="23" link="admin_submiter_details.screen">
+        <font/>
+      </widgets>
+    </widgets>
+    <widgets xsi:type="model:WidgetGroup" id="37" x="3" y="99" measuredWidth="360" measuredHeight="100">
+      <widgets xsi:type="model:WidgetGroup" id="31" measuredWidth="360" measuredHeight="100">
+        <widgets xsi:type="model:Panel" id="32" width="360" measuredWidth="360" measuredHeight="100" background="#00ffff" alpha="64" foreground="#0000ff"/>
+        <widgets xsi:type="model:Master" id="33" x="18" y="6" measuredWidth="43" measuredHeight="31">
+          <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Text%20Size%20Medium"/>
+          <overrides>
+            <widgets ref="5" text="UID">
+              <font bold="true"/>
+            </widgets>
+          </overrides>
+        </widgets>
+        <widgets xsi:type="model:Master" id="34" x="18" y="37" measuredWidth="49" measuredHeight="26">
+          <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Text%20Size%20Small"/>
+          <overrides>
+            <widgets ref="6" text="Name"/>
+          </overrides>
+        </widgets>
+        <widgets xsi:type="model:Master" id="35" x="18" y="71" measuredWidth="46" measuredHeight="26">
+          <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Text%20Size%20Small"/>
+          <overrides>
+            <widgetChanges xsi:type="o:Insert" newIndex="1">
+              <object xsi:type="model:Label" text="Email">
+                <font size="15px" bold="false"/>
+              </object>
+            </widgetChanges>
+            <widgetChanges xsi:type="o:Delete" ref="6"/>
+          </overrides>
+        </widgets>
+        <widgets xsi:type="model:Link" id="36" x="310" y="72" text="Details" measuredWidth="43" measuredHeight="23" link="admin_submiter_details.screen">
+          <font/>
+        </widgets>
+      </widgets>
+    </widgets>
+    <widgets xsi:type="model:WidgetGroup" id="38" y="198" measuredWidth="360" measuredHeight="100">
+      <widgets xsi:type="model:Panel" id="39" width="360" measuredWidth="360" measuredHeight="100" background="#00ffff" alpha="64" foreground="#0000ff"/>
+      <widgets xsi:type="model:Master" id="40" x="18" y="6" measuredWidth="43" measuredHeight="31">
+        <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Text%20Size%20Medium"/>
+        <overrides>
+          <widgets ref="5" text="UID">
+            <font bold="true"/>
+          </widgets>
+        </overrides>
+      </widgets>
+      <widgets xsi:type="model:Master" id="41" x="18" y="37" measuredWidth="49" measuredHeight="26">
+        <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Text%20Size%20Small"/>
+        <overrides>
+          <widgets ref="6" text="Name"/>
+        </overrides>
+      </widgets>
+      <widgets xsi:type="model:Master" id="42" x="18" y="71" measuredWidth="46" measuredHeight="26">
+        <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Text%20Size%20Small"/>
+        <overrides>
+          <widgetChanges xsi:type="o:Insert" newIndex="1">
+            <object xsi:type="model:Label" text="Email">
+              <font size="15px" bold="false"/>
+            </object>
+          </widgetChanges>
+          <widgetChanges xsi:type="o:Delete" ref="6"/>
+        </overrides>
+      </widgets>
+      <widgets xsi:type="model:Link" id="43" x="310" y="72" text="Details" measuredWidth="43" measuredHeight="23" link="admin_submiter_details.screen">
+        <font/>
+      </widgets>
+    </widgets>
+  </widgets>
+  <widgets xsi:type="model:VSplitter" id="47" x="208" y="632" height="72" measuredWidth="11" measuredHeight="72"/>
+  <hRuler/>
+  <vRuler/>
+  <font size="12px"/>
+</model:Screen>

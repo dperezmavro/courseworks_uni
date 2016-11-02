@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:Master" id="1" measuredWidth="430" measuredHeight="844">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Phone"/>
+  </widgets>
+  <widgets xsi:type="model:SVGImage" id="2" x="80" y="192" width="138" height="136" measuredWidth="138" measuredHeight="136" link="admin_report_browser.screen" src="../assets/2-action-search.svg"/>
+  <widgets xsi:type="model:SVGImage" id="3" x="224" y="192" width="136" height="136" measuredWidth="136" measuredHeight="136" link="admin_submiter_actions.screen" src="../assets/6-social-person.svg"/>
+  <widgets xsi:type="model:Tooltip" id="4" x="312" y="192" text="Submiter Actions" measuredWidth="114" measuredHeight="40">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Tooltip" id="5" x="152" y="184" text="Browse reports&#xA;" measuredWidth="100" measuredHeight="40">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:SVGImage" id="6" x="224" y="368" width="136" height="145" measuredWidth="136" measuredHeight="145" link="admin_settings.screen" src="../assets/10-device-access-accounts.svg"/>
+  <widgets xsi:type="model:Tooltip" id="7" x="285" y="352" text="Settings" measuredWidth="60" measuredHeight="40">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:SVGImage" id="8" x="75" y="368" width="144" height="145" measuredWidth="144" measuredHeight="145" link="admin_saved.screen" src="../assets/5-content-save.svg"/>
+  <widgets xsi:type="model:Tooltip" id="9" x="169" y="353" text="Saved reports&#xA;" measuredWidth="94" measuredHeight="40">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Icon" id="10" x="366" y="135" measuredWidth="32" measuredHeight="32" icon="close (large)"/>
+  <widgets xsi:type="model:Icon" id="11" x="335" y="135" measuredWidth="32" measuredHeight="32" icon="refresh (large)"/>
+  <widgets xsi:type="model:Tooltip" id="12" x="359" y="96" text="Update cases" measuredWidth="91" measuredHeight="40">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Tooltip" id="13" x="396" y="121" text="Quit app" measuredWidth="62" measuredHeight="40">
+    <font/>
+  </widgets>
+  <hRuler>
+    <guides position="218"/>
+    <guides position="75"/>
+    <guides position="359"/>
+  </hRuler>
+  <vRuler/>
+  <font size="12px"/>
+</model:Screen>

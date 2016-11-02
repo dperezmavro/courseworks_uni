@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore" xmlns:o="http://wireframesketcher.com/1.0/model/overrides">
+  <widgets xsi:type="model:WidgetGroup" id="48" measuredWidth="430" measuredHeight="844">
+    <widgets xsi:type="model:Master" id="1" measuredWidth="430" measuredHeight="844">
+      <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Phone"/>
+    </widgets>
+    <widgets xsi:type="model:Master" id="47" x="37" y="135" measuredWidth="360" measuredHeight="46">
+      <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Action%20Bar"/>
+      <overrides>
+        <widgetChanges xsi:type="o:Delete" ref="693"/>
+        <widgetChanges xsi:type="o:Delete" ref="672"/>
+        <widgets ref="670" link="user_home.screen">
+          <attributes key="icon" value="backspace (large)"/>
+        </widgets>
+        <widgets ref="669" x="59" y="7" text="Main" link="user_home.screen"/>
+      </overrides>
+    </widgets>
+  </widgets>
+  <widgets xsi:type="model:Panel" id="25" x="38" y="380" width="360" measuredWidth="360" measuredHeight="100" background="#00ff00" alpha="64" foreground="#00ff00"/>
+  <widgets xsi:type="model:Icon" id="26" x="47" y="389" width="72" height="80" measuredWidth="72" measuredHeight="80" icon="image (large)"/>
+  <widgets xsi:type="model:Master" id="27" x="126" y="390" measuredWidth="134" measuredHeight="31">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Text%20Size%20Medium"/>
+    <overrides>
+      <widgets ref="5" text="Report Title">
+        <font bold="true"/>
+      </widgets>
+    </overrides>
+  </widgets>
+  <widgets xsi:type="model:Master" id="28" x="126" y="421" measuredWidth="224" measuredHeight="26">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Text%20Size%20Small"/>
+    <overrides>
+      <widgets ref="6" text="Problem descrption going on"/>
+    </overrides>
+  </widgets>
+  <widgets xsi:type="model:Icon" id="29" x="358" y="388" measuredWidth="32" measuredHeight="32" icon="favorites (large)"/>
+  <widgets xsi:type="model:Master" id="30" x="126" y="455" measuredWidth="46" measuredHeight="26">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Text%20Size%20Small"/>
+    <overrides>
+      <widgetChanges xsi:type="o:Insert" newIndex="1">
+        <object xsi:type="model:Label" text="Votes">
+          <font size="15px" bold="false"/>
+        </object>
+      </widgetChanges>
+      <widgetChanges xsi:type="o:Delete" ref="6"/>
+    </overrides>
+  </widgets>
+  <widgets xsi:type="model:Link" id="31" x="349" y="456" text="Details" measuredWidth="43" measuredHeight="23" link="../admin_app/admin_report_details.screen">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Panel" id="33" x="38" y="280" width="360" measuredWidth="360" measuredHeight="100" background="#ff0000" alpha="64" foreground="#ff0000"/>
+  <widgets xsi:type="model:Icon" id="34" x="47" y="289" width="72" height="80" measuredWidth="72" measuredHeight="80" icon="image (large)"/>
+  <widgets xsi:type="model:Master" id="35" x="126" y="290" measuredWidth="134" measuredHeight="31">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Text%20Size%20Medium"/>
+    <overrides>
+      <widgets ref="5" text="Report Title">
+        <font bold="true"/>
+      </widgets>
+    </overrides>
+  </widgets>
+  <widgets xsi:type="model:Master" id="36" x="126" y="321" measuredWidth="224" measuredHeight="26">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Text%20Size%20Small"/>
+    <overrides>
+      <widgets ref="6" text="Problem descrption going on"/>
+    </overrides>
+  </widgets>
+  <widgets xsi:type="model:Icon" id="37" x="358" y="288" measuredWidth="32" measuredHeight="32" icon="favorites (large)"/>
+  <widgets xsi:type="model:Master" id="38" x="126" y="355" measuredWidth="46" measuredHeight="26">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Text%20Size%20Small"/>
+    <overrides>
+      <widgetChanges xsi:type="o:Insert" newIndex="1">
+        <object xsi:type="model:Label" text="Votes">
+          <font size="15px" bold="false"/>
+        </object>
+      </widgetChanges>
+      <widgetChanges xsi:type="o:Delete" ref="6"/>
+    </overrides>
+  </widgets>
+  <widgets xsi:type="model:Link" id="39" x="349" y="356" text="Details" measuredWidth="43" measuredHeight="23" link="../admin_app/admin_report_details.screen">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Panel" id="10" x="37" y="180" width="360" measuredWidth="360" measuredHeight="100" background="#00ff00" alpha="64" foreground="#00ff00"/>
+  <widgets xsi:type="model:Icon" id="11" x="46" y="189" width="72" height="80" measuredWidth="72" measuredHeight="80" icon="image (large)"/>
+  <widgets xsi:type="model:Master" id="14" x="125" y="190" measuredWidth="134" measuredHeight="31">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Text%20Size%20Medium"/>
+    <overrides>
+      <widgets ref="5" text="Report Title">
+        <font bold="true"/>
+      </widgets>
+    </overrides>
+  </widgets>
+  <widgets xsi:type="model:Master" id="15" x="125" y="221" measuredWidth="224" measuredHeight="26">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Text%20Size%20Small"/>
+    <overrides>
+      <widgets ref="6" text="Problem descrption going on"/>
+    </overrides>
+  </widgets>
+  <widgets xsi:type="model:Icon" id="12" x="357" y="188" measuredWidth="32" measuredHeight="32" icon="favorites (large)"/>
+  <widgets xsi:type="model:Master" id="21" x="125" y="255" measuredWidth="46" measuredHeight="26">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Text%20Size%20Small"/>
+    <overrides>
+      <widgetChanges xsi:type="o:Insert" newIndex="1">
+        <object xsi:type="model:Label" text="Votes">
+          <font size="15px" bold="false"/>
+        </object>
+      </widgetChanges>
+      <widgetChanges xsi:type="o:Delete" ref="6"/>
+    </overrides>
+  </widgets>
+  <widgets xsi:type="model:Link" id="22" x="348" y="256" text="Details" measuredWidth="43" measuredHeight="23" link="../admin_app/admin_report_details.screen">
+    <font/>
+  </widgets>
+  <hRuler/>
+  <vRuler/>
+  <font size="12px"/>
+</model:Screen>

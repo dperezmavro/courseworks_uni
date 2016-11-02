@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore" xmlns:o="http://wireframesketcher.com/1.0/model/overrides">
+  <widgets xsi:type="model:Master" id="1" measuredWidth="430" measuredHeight="844">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Phone"/>
+  </widgets>
+  <widgets xsi:type="model:WidgetGroup" id="2" x="37" y="102" measuredWidth="452" measuredHeight="604">
+    <widgets xsi:type="model:WidgetGroup" id="17" measuredWidth="452" measuredHeight="604">
+      <widgets xsi:type="model:WidgetGroup" id="3" y="78" measuredWidth="404" measuredHeight="526">
+        <widgets xsi:type="model:Master" id="8" measuredWidth="360" measuredHeight="48">
+          <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Tabs"/>
+          <overrides>
+            <widgets ref="9" text="Report Details, Map View">
+              <items ref="@items.1" text="Report Details"/>
+              <items ref="@items.2" text="Map View"/>
+              <itemChanges xsi:type="o:Delete" ref="@items.0"/>
+            </widgets>
+          </overrides>
+        </widgets>
+        <widgets xsi:type="model:Map" id="18" y="47" width="360" height="479" measuredWidth="360" measuredHeight="479"/>
+        <widgets xsi:type="model:WidgetGroup" id="26" x="227" y="115" width="177" height="89" measuredWidth="177" measuredHeight="89">
+          <widgets xsi:type="model:Tooltip" id="27" width="177" height="89" measuredWidth="177" measuredHeight="89">
+            <font/>
+          </widgets>
+          <widgets xsi:type="model:Label" id="28" x="41" y="9" width="56" text="Title" measuredWidth="56" measuredHeight="31">
+            <font size="19px" bold="true"/>
+          </widgets>
+          <widgets xsi:type="model:Label" id="29" x="41" y="27" width="70" text="Location" measuredWidth="70" measuredHeight="26">
+            <font size="15px" bold="false"/>
+          </widgets>
+          <widgets xsi:type="model:Label" id="30" x="41" y="47" width="70" text="Submiter" measuredWidth="70" measuredHeight="26" link="admin_submiter_details.screen">
+            <font size="15px" bold="false"/>
+          </widgets>
+        </widgets>
+        <widgets xsi:type="model:SVGImage" id="31" x="139" y="188" measuredWidth="120" measuredHeight="120" foreground="#ff0000" src="../assets/7-location-place.svg"/>
+      </widgets>
+      <widgets xsi:type="model:WidgetGroup" id="11" measuredWidth="452" measuredHeight="79">
+        <widgets xsi:type="model:Master" id="12" y="33" measuredWidth="360" measuredHeight="46" dimmed="true">
+          <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Action%20Bar"/>
+          <overrides>
+            <widgetChanges xsi:type="o:Delete" ref="693"/>
+            <widgetChanges xsi:type="o:Delete" ref="672"/>
+            <widgets ref="670" link="admin_main.screen">
+              <attributes key="icon" value="backspace (large)"/>
+            </widgets>
+            <widgets ref="669" x="59" y="7" text="Main" link="admin_main.screen"/>
+          </overrides>
+        </widgets>
+        <widgets xsi:type="model:WidgetGroup" id="13" x="319" measuredWidth="133" measuredHeight="72">
+          <widgets xsi:type="model:Icon" id="14" y="40" measuredWidth="32" measuredHeight="32" foreground="#666666" icon="favorites (large)"/>
+          <widgets xsi:type="model:Tooltip" id="15" x="20" text="Add to favourites&#xA;" measuredWidth="113" measuredHeight="40">
+            <font/>
+          </widgets>
+        </widgets>
+      </widgets>
+    </widgets>
+  </widgets>
+  <widgets xsi:type="model:Link" id="16" x="184" y="192" measuredWidth="3" measuredHeight="23" link="admin_report_details.screen">
+    <font/>
+  </widgets>
+  <hRuler/>
+  <vRuler/>
+  <font size="12px"/>
+</model:Screen>

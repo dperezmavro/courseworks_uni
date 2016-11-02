@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore" xmlns:o="http://wireframesketcher.com/1.0/model/overrides">
+  <widgets xsi:type="model:Master" id="2" x="-8" measuredWidth="430" measuredHeight="844">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Phone"/>
+  </widgets>
+  <widgets xsi:type="model:Master" id="3" x="37" y="135" measuredWidth="360" measuredHeight="46" dimmed="true">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Action%20Bar"/>
+    <overrides>
+      <widgetChanges xsi:type="o:Delete" ref="693"/>
+      <widgetChanges xsi:type="o:Delete" ref="672"/>
+      <widgets ref="670" link="user_home.screen">
+        <attributes key="icon" value="backspace (large)"/>
+      </widgets>
+      <widgets ref="669" x="59" y="7" text="Main" link="user_home.screen"/>
+    </overrides>
+  </widgets>
+  <widgets xsi:type="model:Master" id="5" x="82" y="320" width="253" height="88" measuredWidth="253" measuredHeight="88">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Text%20Field"/>
+    <overrides>
+      <widgets ref="479" width="253" text="Title"/>
+      <widgets ref="478" y="2" width="253" height="56"/>
+    </overrides>
+  </widgets>
+  <widgets xsi:type="model:Master" id="6" x="82" y="432" width="262" height="88" measuredWidth="262" measuredHeight="88">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Text%20Field"/>
+    <overrides>
+      <widgets ref="479" x="8" width="253" text="Description"/>
+      <widgets ref="478" y="0" width="253" height="56"/>
+    </overrides>
+  </widgets>
+  <widgets xsi:type="model:Link" id="7" x="83" y="528" text="Add Location" measuredWidth="82" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Master" id="9" x="249" y="576" width="90" measuredWidth="90" measuredHeight="26">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Switch%20ON"/>
+    <overrides>
+      <widgets ref="489" width="90"/>
+      <widgets ref="491" x="54" width="22"/>
+    </overrides>
+  </widgets>
+  <widgets xsi:type="model:Master" id="11" x="83" y="575" measuredWidth="167" measuredHeight="26">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Text%20Size%20Small"/>
+    <overrides>
+      <widgets ref="6" text="Submit anonymously"/>
+    </overrides>
+  </widgets>
+  <widgets xsi:type="model:Master" id="12" x="112" y="648" measuredWidth="184" measuredHeight="39">
+    <screen xsi:type="model:WidgetGroup" href="../assets/Android4.screen#Button"/>
+    <overrides>
+      <widgets ref="497" text="Submit"/>
+    </overrides>
+  </widgets>
+  <widgets xsi:type="model:Label" id="14" x="112" y="192" width="213" text="Take Image" measuredWidth="213" measuredHeight="74" textAlignment="Center" icon="snapshot (xlarge)" iconPosition="top">
+    <font/>
+  </widgets>
+  <hRuler>
+    <guides position="338"/>
+    <guides position="83"/>
+  </hRuler>
+  <vRuler/>
+  <font size="12px"/>
+</model:Screen>
