@@ -1,0 +1,105 @@
+\documentclass[12pt,a4paper,onecolumn]{article}
+\usepackage[top=0.8in, bottom=0.8in, right=0.8in, left=0.8in]{geometry}
+\usepackage[linesnumbered,ruled,lined]{algorithm2e}
+\usepackage{hyperref}
+\usepackage{listings}
+\begin{document}
+\author{Dionisio Perez-Mavrogenis}
+\title{COMP3019 Assignment 1}
+\date{\today}
+\maketitle
+
+\section{Part 1}
+\subsection{Applet Development}
+The code for the applet is given in listing \ref{avja}.\\
+
+Initially the applet was tested using the \texttt{appletviewer} (html listing provided in listing \ref{avhtml})with \textit{appletviewer} asking for a parameter string to pass to the applet. The format in which the parameter is provided is
+$$ <acceptable-letter>:<filename.txt> $$
+The applet would then split the string in $:$, try to read $filename.txt$ (assumed to be bundled in the applet jar file) and count the occurrences of $letter$. The letter $e$ occurred 45 times in the supplied text file.\\
+
+\textbf{\textit{Note}} : In the current implementation, use the \texttt{\$} character in order to look for the white-space character.\\
+
+For submitting to an M-Grid server I used a local M-Grid server\footnote{Local server address: http://localhost:8080/mgrid/}. M-Grid requires three parameters for submitting a new job to the grid\footnote{Job submission page : http://localhost:8080/mgrid/JobSubmit}: a job name, a job executable jar file and a parameters file. The jar executable must be an M-Grid applet, i.e. its class must extend the MGridApplet class and implement the \texttt{initApplet} method. The parameters file required for the submission should contain a parameter per line.\\
+
+For jobs to be completed available worker nodes needed to exist. Worker nodes are created by volunteering a browser window \footnote{Volunteering page : http://localhost:8080/mgrid/JobRequest} page. Monitoring the status of a job is done at the job monitoring page\footnote{Monitoring page : http://localhost:8080/mgrid/ViewJobs}, where the output of each worker can be downloaded.\\
+
+\textbf{\textit{Note}} : the class file \texttt{CounterApplet} belongs to a package named \texttt{counterapplet}.
+
+\subsection{Execution Model and Applications}
+The M-Grid framework works using a FIFO queue for processing jobs, using a SIMD approach.\\
+
+Each line of the parameters file is sent along with a corresponding jar,as its parameter, to a node for execution, repeating the process until no parameters remain unprocessed. A submitted job will most likely be executed by more than one node(depending on node availability), minimising execution time.\\
+
+M-Grid assumes that problem instances are completely independent from each other and that the program can make work with just an input parameter, known as embarrassingly parallel.\\
+
+Embarrassingly parallel problems include the calculation of fractals with lots of iterations, video rendering and DES cracking\footnote{EFF's DES Cracker site : \href{http://w2.eff.org/Privacy/Crypto/Crypto_misc/DESCracker/HTML/19980716_eff_des_faq.html}{link}.}.
+
+\subsection{Error Detection}
+Manual error detection is not always possible, is expensive and time consuming. Manual checking could be performed to spot issues of accuracy on characteristic examples or to verify program correctness in various points.\\
+
+Automatic error detection is possibly cheaper and faster, it will however occupy computational resources for twice the time per job. Also, verification should occur on distinct nodes, as it is unlikely that two nodes will simultaneously fail. Furthermore the executable of the submitted job must return correct results and not have bugs for verification to be meaningful.
+
+\section{Part 2}
+\subsection{Part 2(\textit{a})}
+I completed and tested part 2(a) by using the scripts included in the coursework files. Everything was tested on a local GridSAM server.
+
+\paragraph{Job submission in GridSAM.} GridSAM jobs are submitted via JSDL files, which describe what job is to be executed and with what arguments, as well as where the output (error or result) should be stored.\\
+
+A gridSAM client submits the JSDL file to a GridSAM server and the server then parses the JSDL file. When parsed, the server uses web services (FTP in this case) in order to stage-in any files needed as input, then executes the job and then again uses FTP web services to stage-out the output files, i.e. transfer them to their destination. The addresses of any input and output files needed are specified in the JSDL file.\\
+
+Furthermore, the web-services needed for file transfer need to exist on both the machines that currently host the file of interest and the destination machine.
+
+\subsection{Part 2(\textit{b}).} Function \ref{func:map} describes the new definition of the $Map()$ function. \\
+
+The new definition makes some assumptions. I assume that we are able to create and manipulate new lists on the host machine and that there is a \texttt{JobManager} we can query for details of a job, given its JobId. The \texttt{length} function get the length of a list and  \texttt{jobs} is a list containing jobIs of all the submitted jobs.\\
+
+\vspace{0.5cm}
+\begin{function}[H]
+	outputList = set()\\
+	jobs = list()\\
+	\For {(fileName, fileLocation) in inputList} {
+		location = hostedInputFileLocation(filename/fileLocation)\\
+		jobId = gridSubmit(mapFunction, location)\\
+		jobs.append(jobId)\\
+	}
+	
+	\While{ length(jobs) $ > $ 0 }{
+		\For {job in jobs } {
+			\If {gridJobFinished(job)}{
+				jobs.remove(job)\\
+				outfile = JobManager.getInfoByJobId(job).getOuputFileLocation()\\
+				(filename, wordcount) = gridCopyFromDataServer(outfile)\\
+				outputList.add((filename, wordcount))
+			}
+		}
+	}
+	\KwRet{outputList}
+\caption{Map(inputList, mapFunction)}
+\label{func:map}
+\end{function}
+\vspace{0.5cm}
+
+The new Map() function works by first creating a and submitting a job to the grid for each input argument in the inputList. Then, in the \texttt{while} loop it loops until all jobs are done, adding the partial results of each finished job to \texttt{outputList}, returning \texttt{outputList} when all jobs have finished. It is assumed that the output of each working node contains a word count associated with the corresponding file of origin.\\
+
+The only requirements for this implementation is that the worker nodes have the \texttt{mapFunction} locally so that they can execute it on the argument list, or can retrieve it through the JSDL produced by \texttt{gridSubmit}. When the loop finishes, meaning that all nodes are done processing, the \texttt{outputList} is returned and passed to the \texttt{Reduce()} function, as in the original implementation.\\
+
+\texttt{outputList} is a set with elements (\textit{filename},\textit{wordcount}), in order to avoid duplicate entries.
+
+\pagebreak
+\appendix
+\section{Applet Code Listings}
+\subsection{HTML page for local testing}
+\lstinputlisting[language=HTML,
+	caption=HTML test file used for testing the applet in the AppletViewer.,
+	breaklines=true,
+	numbers=left,
+	numberstyle=\tiny,
+	label=avhtml]{../counterapplet.html}
+\subsection{M-Grid applet Java code}
+\lstinputlisting[language=Java,
+	caption=M-Grid character counter applet.,
+	breaklines=true,
+	numbers=left,
+	numberstyle=\tiny,
+	label=avja]{../src/counterapplet/CounterApplet.java}
+\end{document}

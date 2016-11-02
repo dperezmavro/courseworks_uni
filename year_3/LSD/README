@@ -1,0 +1,9 @@
+This is my char counter for the distributed systems coursework
+
+I created certain scripts for automation in out/production/Charcounter
+	* run.sh will do all the building and start FF automatically
+	* makefile has instructions on what to build and where, moving stufff and making the dev dir.
+
+To run it is sufficient to edit the java files in source if needed, then call ./run.sh
+to make dev environment, just call : make dev 
+
