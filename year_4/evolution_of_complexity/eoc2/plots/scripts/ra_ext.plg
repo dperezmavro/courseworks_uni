@@ -1,0 +1,11 @@
+set terminal pngcairo size 1024,768 enhanced font 'Verdana,15'
+set output "plots/rastrigin_ext.png"
+set termoption dash
+
+set xlabel "Function evaluations"
+set ylabel "Best individual"
+set xtics(20000,40000,60000,80000,100000)
+plot filename using 1:2 title "Rastrigin GA(avg.50)" with lines lc 1, \
+     filename using 1:3 title "Rastrigin CCGA1(avg.50)" with lines lt 2 lc 7, \
+     filename2 using 1:2 title "Rastrigin GA ext(avg.50)" with lines lt 1 lc 3, \
+     filename2 using 1:3 title "Rastrigin CCGA1 ext(avg.50)" with lines lt 2 lc 4

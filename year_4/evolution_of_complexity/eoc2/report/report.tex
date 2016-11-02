@@ -1,0 +1,189 @@
+\documentclass[12pt,a4paper,onecolumn]{article}
+\usepackage[top=0.2in,left=0.6in,right=0.6in]{geometry}
+\usepackage{breqn}
+
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\graphicspath{{../plots/}}
+
+\begin{document}
+
+\title{Evolution of Complexity, Assignment 2}
+\author{Dionisio Perez-Mavrogenis}
+\date{\today}
+\maketitle
+
+\section{Original Implementation}
+\subsection{Introduction}
+For this assignment I chose to re-implement and extend \emph{A cooperative Coevolutionary Approach to Function Optimization}\cite{PDJ} by Potter and De Jong(PDJ).
+
+This paper is divided into two main parts. The first part describes my attempt at investigating and implementing the paper written by De Jong and Potter and presents the results. Furthermore I will also be discussing difficulties that arose during development and facts that were not clear about the original paper.
+
+In the second part of the paper I will present my hypothesis as an extension. A discussion of the implementation of the extension and the results will conclude this paper.
+
+\subsection{Overview}
+\label{overview}
+In their original paper PDJ presented their Cooperative Coevolutionary Genetic Algorithm (CCGA), an algorithm that they showed would outperform a traditional genetic algorithm (GA). They tested their hypothesis on the well studied domain of function optimisation, using the following function to compare the performances of GA and CCGA:
+$$ \mathrm{Rastrigin} : 3.0n + \sum_{i=1}^{n} x_i^2 - 3.0\cos(2\pi x_i) $$
+$$ \mathrm{Schwefel} : 418.9829n-\sum^{n}_{i=1}x_i\sin \left(\sqrt{|x|}\right) $$
+$$ \mathrm{Griewangk} : 1+\sum^{n}_{i=1} \frac{x_i^2}{4000}-\prod^{n}_{i=1}\cos \left(\frac{x_i}{\sqrt{i}}\right) $$
+$$\mathrm{Ackley} : 20 + \mathrm{e} - 20 \mathrm{exp}\left( -0.2\sqrt{\frac{1}{n}\sum^{n}_{i=1}x_i^2} \right) -\mathrm{exp}\left( \frac{1}{n}\sum^{n}_{i=1}\cos(2 \pi x_i) \right) $$
+
+Table \ref{func_spec} lists the properties of each function. All the functions have a single global minimum $\mathbf{x^*} = \langle x_1, x_2,\ldots , x_n \rangle$  and $ f\left( \mathbf{x^*}\right) = \langle 0,0,\ldots,0 \rangle $.
+
+In the GA approach, PDJ had a population of one-hundred $n$-vector elements (where $n$ is determined by each function) and each population was competing with the others to perform better. In the CCGA approach each dimension was represented by a subpopulation of size one-hundred and each element of the population was evaluated by combining it with the \emph{best} of all the other dimensions, effectively making the subpopulations cooperate with each other to produce the best solution.
+
+Table \ref{env_params} outlines the rest of the parameters used in their simulations.
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{ c | c | c }
+Function & $n$ & Domain range \\
+\hline
+\hline
+Rastrigin & 20 & $-5.12 \leq x_i \leq 5.12 $\\
+Schwefel & 10 & $-500 \leq x_i \leq 500 $\\
+Griewangk & 10 & $-600 \leq x_i \leq 600 $\\
+Ackley & 30 & $-30 \leq x_i \leq 30 $\\
+\end{tabular}
+\caption{Evaluation function properties}
+\label{func_spec}
+\end{center}
+\end{table}
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c  p{4.5cm}}
+\hline
+\emph{representation} & binary (16 bits per variable)\\ \hline
+\emph{selection} & fitness proportionate \\ \hline
+\emph{fitness scaling} & scaling window(width 5)\\ \hline
+\emph{elitist strategy} & copy of best individual\\ \hline
+\emph{genetic operators} & two-point crossover	 and brit-flip mutation \\ \hline
+\emph{mutation probability} & 1/chromlength \\ \hline
+\emph{crossover probability} & 0.6 \\ \hline
+\emph{population size} & 100\\\hline
+\end{tabular}
+\caption{Environment variables used for the simulations of PDJ.}
+\label{env_params}
+\end{center}
+\end{table}
+
+\subsection{Implementation}
+I re-implemented the paper by PDJ in the C programming language for a number of reasons. Firstly, the representation of each individual as 16-bit variables is a native datatype to C (type \texttt{unsigned short}). Secondly, the mutation operations of two-point crossover and bit-flip mutation were achieved by using bit masks and bitwise operations, again native to the C language. A third, equally important, reason was performance. The original paper is computationally intensive, mainly due to a lot of necessary looping over the population, making execution time a concern and C's performance made it a more attractive choice.
+
+Another argument in favour of C is the fact that by representing the population as a collection of \texttt{unsigned short}, one consumes an average of 4,000 bytes for the population, just below 4 kilobytes of memory per simulation. In contrast, if one were to represent the population as a character array (in Java for example), they would have to use at least eight times as much memory (as each individual would need to be represented with 16 bytes - the size of a character) and would not have the additional benefit of being able to use the high performance bitwise operations that C provides.
+
+Even though the members of the population can be kept as a collection of \texttt{unsigned short} type, the fitness functions require a real valued vector, and therefore a mapping from the population members to the function domain is needed. Since an individual is represented as a 16-bit binary variable there are $2^{16}$ possible candidates in the domain, and I chose to linearly scale the candidates over the function domain, making for an intuitive and simple to implement mapping function. As an example, in the Rastrigin function the population member $\overrightarrow{\mathbf{0}}$ would be value -5.12, while $\overrightarrow{\mathbf{1}}$ would map to 5.12.
+
+\subsubsection{Challenges}
+\label{challenges}
+In this section I will describe the challenges I came across while re-implementing the original paper and things that were unclear about it.
+
+\paragraph{Genetic Operations} It is reasonable to think that the candidate binary representation and its corresponding mapping are equivalent and therefore manipulation of either one should be fine, but this is not the case due to the nature of the machine representation of the floating point values involved (IEEE 754-1985 format). In particular, while applying bitwise operations to integer types makes sense, applying the same operations to floating point values does not. 
+
+Budin\cite{floats} outlines some of the problems with bitwise operations on floating point numbers and proposes a solution which involves treating the floating point as a binary string(ignoring the sign bit) and performing the genetic operations on that, while another solution includes adding some random small number to the floating point representation(to simulate mutation). These approaches might generate invalid values however and another solution was chosen. The genetic operations are applied to the integers representing the population, and this cascades down perfectly to their floating point counterparts. Therefore the loss of precision and generating invalid values is avoided.
+\paragraph{Precision} Because of the way floating point numbers are represented there exists a potential for precision errors, as explained by Goldberg\cite{float_error}. The workaround to this is repeating the process and calculating an average value, which is implicitly done by PDJ when they calculate an average of the fitness values.
+\paragraph{Comparison fairness} In order to compare GA's and CCGA's performance a scheme needed to be devised that would make the comparison fair, as the CCGA operates on $n$ dimensions and comparing it with a one-dimensional GA would not be meaningful. Therefore, the GA has a population of one-hundred $n$-dimensional vectors which it evolves, while the CCGA has $n$ hundred-dimensional vectors which it evolves, picking the best of each in every generation.
+\paragraph{Malformed Schwefel function} The Schwefel function outlined in the paper is malformed, as $f(\mathbf{x}^*)$ is not $0$. The correct form of the function is the one presented in \ref{overview}(\cite{schwe_correct} and \cite{website:matlab_schwe}). The difference lies in the subtraction of the two terms of the equations, as opposed to addition. This might be a typographical error on the original paper.
+\paragraph{Fitness scaling} When doing function maximisation a common fitness scaling method is to replace each member's fitness($g(\mathbf{x}_i)$) with $g(\mathbf{x}_i) - population\_worst\_fitness$, thus making the populations' fitness ratios bigger.
+
+In our case however we are doing minimisation and this technique wouldn't work. My solution to that was to replace each member's fitness by $population\_worst\_fitness - g(\mathbf{x}_i)$ for doing fitness proportionate selection.
+
+\emph{\textbf{Note}} : These operations are done on temporary fitnesses, as performing these alterations on the actual fitness values of a candidate would destroy the data gathered.
+\paragraph{Mutation rates} 
+\label{res_orig}In the original paper the mutation rate is described as 1/chromlength, where chromlength can easily be assumed to be 16. That is wrong, as we are evaluating $16n$ bit variables at a time. Therefore the mutation rate is $1/(16n)$.
+
+\subsubsection{Results and Discussion}
+\begin{figure}[h]
+	\begin{subfigure}[t]{0.5\textwidth}
+		\includegraphics[scale=0.25]{rastrigin.png}
+		\caption{The Rastrigin function}
+	\end{subfigure}
+	~
+	\begin{subfigure}[t]{0.5\textwidth}
+		\includegraphics[scale=0.25]{Scwefel.png}
+		\caption{The Schwefel function}
+	\end{subfigure}	\\
+	
+	\begin{subfigure}[t]{0.5\textwidth}
+		\includegraphics[scale=0.25]{griewangk.png}
+		\caption{The Griewangk function}
+	\end{subfigure}
+	~
+	\begin{subfigure}[t]{0.5\textwidth}
+		\includegraphics[scale=0.25]{ackley.png}
+		\caption{The Ackley function}
+	\end{subfigure}
+\caption{Plots of the results generated when reimplementing PDJ's paper.}
+\label{result_plots}	
+\end{figure}
+
+The plots of Figure \ref{result_plots} summarize the results of my implementation with the parameters as specified by PDJ and the corrections reviewed in \ref{challenges}.
+
+One can immediately tell by looking at the numbers in the plots that they do not match those in Figure 3 of PDJ\cite{PDJ}. While this might raise concern at first, one should also note that the general behavior and trends of the simulations do indeed follow the ones presented by PDJ. In particular, in all of the plots the CCGA outperforms the GA and, as in PDJ, the results of the Griewangk CCGA does not exhibit the notable performance difference that the rest of the functions do.\\
+
+The value mismatch that the plots experience can be attributed to a number of different reasons. Firstly, the mismatch in the starting fitnesses can be attributed to the random generation of the individuals of a population and it is reasonably expected that the starting population of a simulation might not match the previous ones and this explains the starting fitness difference between mine and PDJ's simulations.
+
+The other evident performance issue is the maximum achieved fitness of this implementation. While PDJ achieve a performance of (almost) 0, my CCGA and GA implementations seem to reach a plateau after 20,000 function evaluations with the GA improving in performance slowly after that point. This is most likely explained in the subtle implementation differences between mine and PDJ's implementations, as this implementation follows general guidelines in order to achieve the same result and has no knowledge of the internals of the original implementation.\\
+
+Upon further investigation I found that a smaller mutation rate and population size does help improve the maximum achieved fitness. This is reasonably expected however because by having a smaller population size one works more intensely on the same candidates and has therefore got more room for improvement(while running the risk of diversity loss, however). Decreasing the number of dimensions helps as well, but this is not a realistic tweak to the model as one does not always have the option to change the size of the dimensions in a problem.
+
+\section{Extension}
+A useful extension that would be worth exploring is investigating the effect exerted on performance by imposing certain constraints in the crossover operation.
+\subsection{Hypothesis}
+In the current implementation crossover is being carried out with both parents being selected from the same population and the resulting child being placed in the same population, something that might negatively affect future populations. This might create a situation in which inbreeding occurs and  cause inbreeding depression to future populations, a situation in which population's fitness does not improve or deteriorates (PDJ guard against deteriorating fitness via their elitist strategy). 
+
+Inbreeding depression might be a possible explanation for the performance plateau observed in the results of this implementation. A way to work around this would be to select the parents from different groups and, taking it a step further, placing the child in a different population.
+
+\subsection{Implementation}
+Constrained crossover with the aim of avoiding inbreeding will be implemented differently for the GA and CCGA. 
+
+For the GA, while iterating over candidate solution $i$ the second parent will be selected as a random member from candidate solution $i+1$ and the offspring will replace the parent at $i$. The same will happen for parent $i+1$ at the same iteration as for parent $i$.
+
+For the CCGA a slightly different approach is taken. When in dimension $i$ of the population that parent is crossed-over with a random individual from dimension $i+1$ and the resulting offspring is placed in dimension $i+2$. That way it is assured that offsprings will never mate with their parents.
+
+\subsection{Results}
+Figure \ref{ext_plots} shows the results obtained by implementing the constrained crossover. In Figure \ref{ext_plots} the results of CCGA and GA are also plotted for an easier overview and comparison of the two approaches.
+
+\begin{figure}[h]
+	\begin{subfigure}[t]{0.5\textwidth}
+		\includegraphics[scale=0.25]{rastrigin_ext.png}
+		\caption{The Rastrigin function}
+	\end{subfigure}
+	~
+	\begin{subfigure}[t]{0.5\textwidth}
+		\includegraphics[scale=0.25]{scwefel_ext.png}
+		\caption{The Schwefel function}
+	\end{subfigure}	\\
+	
+	\begin{subfigure}[t]{0.5\textwidth}
+		\includegraphics[scale=0.25]{griewangk_ext.png}
+		\caption{The Griewangk function}
+	\end{subfigure}
+	~
+	\begin{subfigure}[t]{0.5\textwidth}
+		\includegraphics[scale=0.25]{ackley_ext.png}
+		\caption{The Ackley function}
+	\end{subfigure}
+\caption{Plots of the results generated with constrained crossover.}
+\label{ext_plots}	
+\end{figure}
+
+The results indicate that while constrained crossover improves performance always for the GA, the extended CCGA does not always outperform CCGA1. Furthermore, in the Ackley function the extended GA outperforms the extended CCGA by a large margin. This might be explained by the fact that in GA-ext the children replace their parents while in CCGA-ext the children are placed in a completely different dimension.
+
+While this solution somewhat improves performance it does not address the original issue. If one observes the CCGA plots of Figure \ref{ext_plots} they will notice that CCGA-ext still reaches a performance plateau after 20,000 function evaluations, as did CCGA1 originally.
+
+\subsection{Discussion}
+The experimental results show that the way this form of constrained optimization is not adequate for both the GA and the CCGA1. Their performance mismatch might be attributed to the fact that CCGA1 is more sophisticated than the GA and placing random members in the population of each dimension might somehow disrupt the cooperative nature of the algorithm.
+
+This form of constrained optimization is cheap to perform, both in the sense of difficulty of programming implementation as well as in the number of extra instructions that need to be performed, and might be adequate in a scenario where an easy performance improvement to a GA would be desired.
+
+In order to improve the performance of CCGA1 it is clear that this extension will not always be applicable. Since a performance plateau is still observed, this extension fails to provide an adequate solution to maintaining diversity. If the problem is indeed loss of diversity(as opposed to some internal implementation difference) then \cite{FODAVA} discusses an approach called \emph{Generalized Crowding} that aims to maintain diversity in a population by building upon De Jong's (\cite{FODAVA}) idea of crowding where a collection of $\gamma$ individuals is selected and the offspring replaces the most similar one.
+
+\bibliographystyle{unsrt}
+\bibliography{report}
+\end{document}
