@@ -1,2 +1,4 @@
-Intelligent Algorithms coursework.
-This is a set of perceptrons that try to work out what a given sequence aminoacids is (helix, coil or sheet)
+Introduction
+=========
+
+The aim of this coursework was to investigate dynamic programming techniques in MATLAB, by applying them to the problem of tracing a curve in an image. 
